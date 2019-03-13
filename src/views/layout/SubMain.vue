@@ -20,11 +20,13 @@ export default {
 </script>
 
 <style scoped>
+/* .submain{margin: -20px; padding: 20px;} */
 .app-main {
   /*50 = navbar  */
   min-height: calc(100vh - 50px);
   position: relative;
   overflow: hidden;
+  margin: -20px;
   padding: 20px;
 }
 </style>

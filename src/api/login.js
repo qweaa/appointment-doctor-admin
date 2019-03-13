@@ -1,21 +1,21 @@
 import request from '@/utils/request'
 
-export function login(username, password) {
+export function login(NickName, password) {
   return request({
-    url: '/user/login',
+    url: '/auth/adminLogin',
     method: 'post',
     data: {
-      username,
+      NickName,
       password
     }
   })
 }
 
-export function getInfo(token) {
+export function getInfo(id) {
   return request({
-    url: '/user/info',
+    url: '/admin/getAdminModule',
     method: 'get',
-    params: { token }
+    params: { id }
   })
 }
 

@@ -8,6 +8,7 @@ Vue.use(Router)
 
 /* Layout */
 import Layout from '../views/layout/Layout'
+import SubMain from '../views/layout/SubMain'
 
 /**
 * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
@@ -35,110 +36,117 @@ export const constantRouterMap = [
     children: [{
       path: 'dashboard',
       component: () => import('@/views/dashboard/index')
+    },{
+      path: 'updatePassword',
+      component: () => import('@/views/dashboard/updatePassword')
     }]
   },
 
+  //人员管理
   {
-    path: '/example',
+    path: '/menber',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'example' },
+    // redirect: '/menber/table',
+    name: 'menber',
+    meta: { title: '人员管理', icon: 'example' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
-      },
-      {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
-      }
-    ]
-  },
-
-  {
-    path: '/form',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
-      }
-    ]
-  },
-
-  {
-    path: '/nested',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: 'Nested',
-      icon: 'nested'
-    },
-    children: [
-      {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
+        path: 'student',
+        name: 'student',
+        component: () => import('@/views/menber/student/list'),
+        meta: { title: '会员管理', icon: 'table' }
+      },{
+        path: 'doctor',
+        name: 'doctor',
+        component: SubMain,
+        meta: { title: '医师管理', icon: 'table' },
         children: [
           {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
+            path: 'list',
+            name: 'doctorList',
+            component: () => import('@/views/menber/doctor/list'),
+            meta: { title: '医师列表', icon: 'table' },
+          },{
+            path: 'add',
+            name: 'doctorAdd',
+            component: () => import('@/views/menber/doctor/add'),
+            meta: { title: '添加医师', icon: 'table' },
+          },{
+            path: 'update',
+            name: 'doctorUpdate',
+            component: () => import('@/views/menber/doctor/update'),
+            meta: { title: '更新医师信息', icon: 'table' },
+            hidden: true,
           },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
         ]
       },
-      {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        meta: { title: 'menu2' }
-      }
     ]
   },
 
+  
+  //订单管理
   {
-    path: 'external-link',
+    path: '/order',
     component: Layout,
+    // redirect: '/menber/table',
+    name: 'order',
+    meta: { title: '订单列表', icon: 'example' },
     children: [
       {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
-      }
+        path: 'waituse',
+        name: 'orderwaituse',
+        component: () => import('@/views/order/waitUse'),
+        meta: { title: '待使用订单', icon: 'table' }
+      },{
+        path: 'waitPay',
+        name: 'orderwaitPay',
+        component: () => import('@/views/order/waitPay'),
+        meta: { title: '待付款订单', icon: 'table' }
+      },{
+        path: 'close',
+        name: 'orderclose',
+        component: () => import('@/views/order/close'),
+        meta: { title: '超时订单', icon: 'table' }
+      },{
+        path: 'finish',
+        name: 'orderfinish',
+        component: () => import('@/views/order/finish'),
+        meta: { title: '已完成订单', icon: 'table' }
+      },{
+        path: 'cancel',
+        name: 'ordercancel',
+        component: () => import('@/views/order/cancel'),
+        meta: { title: '已取消订单', icon: 'table' }
+      },
+    ]
+  },
+
+  
+  //订单管理
+  {
+    path: '/note',
+    component: Layout,
+    // redirect: '/menber/table',
+    name: 'note',
+    meta: { title: '公告', icon: 'example' },
+    children: [
+      {
+        path: 'lsit',
+        name: 'notelist',
+        component: () => import('@/views/note/list'),
+        meta: { title: '公告列表', icon: 'table' }
+      },{
+        path: 'add',
+        name: 'noteadd',
+        component: () => import('@/views/note/add'),
+        meta: { title: '添加公告', icon: 'table' }
+      },{
+        path: 'update',
+        name: 'noteupdate',
+        component: () => import('@/views/note/update'),
+        meta: { title: '更新公告', icon: 'table' },
+        hidden: true,
+      },
     ]
   },
 

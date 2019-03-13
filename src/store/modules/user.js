@@ -45,13 +45,13 @@ const user = {
       return new Promise((resolve, reject) => {
         getInfo(state.token).then(response => {
           const data = response.data
-          if (data.roles && data.roles.length > 0) { // 验证返回的roles是否是一个非空数组
-            commit('SET_ROLES', data.roles)
-          } else {
-            reject('getInfo: roles must be a non-null array !')
-          }
-          commit('SET_NAME', data.name)
-          commit('SET_AVATAR', data.avatar)
+          // if (data.roles && data.roles.length > 0) { // 验证返回的roles是否是一个非空数组
+          //   commit('SET_ROLES', data.roles)
+          // } else {
+          //   reject('getInfo: roles must be a non-null array !')
+          // }
+          commit('SET_NAME', data[0].NickName)
+          commit('SET_AVATAR', data[0].avatarUrl)
           resolve(response)
         }).catch(error => {
           reject(error)
@@ -62,14 +62,14 @@ const user = {
     // 登出
     LogOut({ commit, state }) {
       return new Promise((resolve, reject) => {
-        logout(state.token).then(() => {
+        // logout(state.token).then(() => {
           commit('SET_TOKEN', '')
           commit('SET_ROLES', [])
           removeToken()
           resolve()
-        }).catch(error => {
-          reject(error)
-        })
+        // }).catch(error => {
+        //   reject(error)
+        // })
       })
     },
 

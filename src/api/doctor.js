@@ -4,7 +4,7 @@ const name = 'doctor'
 
 export function getDoctorList() {
     return request({
-        url: `/${name}/getDoctorList`,
+        url: `/${name}/getAllDoctorList`,
         method: 'get',
     //   params: { id }
     })
